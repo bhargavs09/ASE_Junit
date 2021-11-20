@@ -3,13 +3,23 @@ pipeline {
 	
 
 	    stages {
-	        stage('Build') {
-	            steps {
-	                git ' https://github.com/bhargavs09/ASE_Junit.git'
-	                sh './mvnw clean compile'
+	    stage('checkout'){
+ 
+		git 'https://gitlab.com/anil.bidari/todorest.git'
+ }
+	stage('install maven'){
+		sh label: '', script: 'sudo apt install maven -y'
+ }
+	stage('maven package'){
+		sh label: '', script: 'mvn package'
+		}
+	        //stage('Build') {
+	            //steps {
+	               // git ' https://github.com/bhargavs09/ASE_Junit.git'
+	                //sh './mvnw clean compile'
 	                // bat '.\\mvnw clean compile'
-	            }
-	        }
+	            //}
+	       // }
 	        stage('Test') {
 	            steps {
 	                sh './mvnw test ASE_Junit/src/trigonometric_taylor_series/Trigonometric_Functions_Test.java'
