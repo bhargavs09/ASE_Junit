@@ -1,0 +1,23 @@
+pipeline {
+	    agent any
+	    stages {
+	        stage('git repo & clean') {
+	            steps {
+	                //rmdir  /s /q ASE_Junit
+	                git clone https://github.com/bhargavs09/ASE_Junit.git
+	               // mvn clean -f ASE_Junit
+	            }
+	        }
+	        stage('install') {
+	            steps {
+	                sh "mvn install -f ASE_Junit"
+	            }
+	        }
+	        stage('test') {
+	            steps {
+	                sh "mvn test -f ASE_Junit/src/trigonometric_taylor_series/Trigonometric_Functions_Test.java"
+	            }
+	        }
+	        
+	    }
+}
