@@ -6,7 +6,6 @@ pipeline {
 	        stage('Build') {
 	            steps {
 	                git ' https://github.com/bhargavs09/ASE_Junit.git'
-			git update-index --chmod=+x mvnw
 	                sh './mvnw clean compile'
 	                // bat '.\\mvnw clean compile'
 	            }
