@@ -1,28 +1,27 @@
 pipeline {
 	    agent any
+	
+
 	    stages {
-	        stage('git repo & clean') {
+	        stage('Build') {
 	            steps {
-	               	// bat "rmdir  /s /q ASE_Junit"
-	                bat "git clone https://github.com/bhargavs09/ASE_Junit.git"
-	                bat "mvn clean -f ASE_Junit"
+	                git ' https://github.com/bhargavs09/ASE_Junit.git'
+	                sh './mvnw clean compile'
+	                // bat '.\\mvnw clean compile'
 	            }
 	        }
-	        stage('install') {
+	        stage('Test') {
 	            steps {
-	                bat "mvn install -f ASE_Junit"
+	                sh './mvnw test'
+	                // bat '.\\mvnw test'
 	            }
-	        }
-	        stage('test') {
-	            steps {
-	                bat "mvn test -f ASE_Junit"
-	            }
-	        }
-	        stage('package') {
-	            steps {
-	                bat "mvn package -f ASE_Junit"
+	
+
+	            post {
+	                always {
+	                    junit '**/target/surefire-reports/TEST-*.xml'
+	                }
 	            }
 	        }
 	    }
-}
-
+	}
