@@ -5,7 +5,7 @@ pipeline {
 	    stages {
 	    	stage('checkout'){
  
-			git 'https://gitlab.com/anil.bidari/todorest.git'
+			git 'https://github.com/bhargavs09/ASE_Junit.git'
  		}
 		stage('install maven'){
 			sh label: '', script: 'sudo apt install maven -y'
