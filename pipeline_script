@@ -3,15 +3,15 @@ pipeline {
 	
 
 	    stages {
-	    stage('checkout'){
+	    	stage('checkout'){
  
-		git 'https://gitlab.com/anil.bidari/todorest.git'
- }
-	stage('install maven'){
-		sh label: '', script: 'sudo apt install maven -y'
- }
-	stage('maven package'){
-		sh label: '', script: 'mvn package'
+			git 'https://gitlab.com/anil.bidari/todorest.git'
+ 		}
+		stage('install maven'){
+			sh label: '', script: 'sudo apt install maven -y'
+ 		}
+		stage('maven package'){
+			sh label: '', script: 'mvn package'
 		}
 	        //stage('Build') {
 	            //steps {
