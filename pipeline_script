@@ -11,8 +11,12 @@ pipeline {
 		
 	        stage('Build') {
 	            steps {
+		    	sh label: '', script: 'sudo apt install maven -y'
+			sh label: '', script: 'mvn package'
+			
+			
 	               // git ' https://github.com/bhargavs09/ASE_Junit.git'
-	                sh 'mvn clean compile'
+	                //sh 'mvn clean compile'
 	                // bat '.\\mvnw clean compile'
 	            }
 	        }
