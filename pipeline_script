@@ -3,6 +3,12 @@ pipeline {
 	
 
 	    stages {
+	   	stage('install') {
+            		steps {
+                		sh "mvn install -f ASE_Junit"
+            		}
+        	}
+
 	        stage('Build') {
 	            steps {
 	                git ' https://github.com/bhargavs09/ASE_Junit.git'
@@ -10,9 +16,10 @@ pipeline {
 	                // bat '.\\mvnw clean compile'
 	            }
 	        }
+		
 	        stage('Test') {
 	            steps {
-	                sh './mvnw test -f ASE_Junit/src/trigonometric_taylor_series/Trigonometric_Functions_Test.java'
+	                sh 'mvn test -f ASE_Junit/src/trigonometric_taylor_series/Trigonometric_Functions_Test.java'
 	                // bat '.\\mvnw test'
 	            }
 	
