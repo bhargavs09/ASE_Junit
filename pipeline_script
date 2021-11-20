@@ -4,14 +4,19 @@ pipeline {
 
 	    stages {
 	    	stage('checkout'){
- 
-			git 'https://github.com/bhargavs09/ASE_Junit.git'
+			steps{
+				git 'https://github.com/bhargavs09/ASE_Junit.git'
+			}
  		}
 		stage('install maven'){
+		steps{
 			sh label: '', script: 'sudo apt install maven -y'
+			}
  		}
 		stage('maven package'){
+		steps{
 			sh label: '', script: 'mvn package'
+			}
 		}
 	        //stage('Build') {
 	            //steps {
