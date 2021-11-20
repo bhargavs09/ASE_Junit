@@ -12,7 +12,7 @@ pipeline {
 	        }
 	        stage('Test') {
 	            steps {
-	                sh './mvnw test'
+	                sh './mvnw test ASE_Junit/src/trigonometric_taylor_series/Trigonometric_Functions_Test.java'
 	                // bat '.\\mvnw test'
 	            }
 	
