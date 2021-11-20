@@ -3,26 +3,16 @@ pipeline {
 	
 
 	    stages {
-	    	stage('checkout'){
-			steps{
-				git 'https://github.com/bhargavs09/ASE_Junit.git'
-			}
- 		}
-		
 	        stage('Build') {
 	            steps {
-		    	sh label: '', script: 'sudo apt install maven -y'
-			sh label: '', script: 'mvn package'
-			
-			
-	               // git ' https://github.com/bhargavs09/ASE_Junit.git'
-	                //sh 'mvn clean compile'
+	                git ' https://github.com/bhargavs09/ASE_Junit.git'
+	                sh './mvnw clean compile'
 	                // bat '.\\mvnw clean compile'
 	            }
 	        }
 	        stage('Test') {
 	            steps {
-	                sh 'mvn test ASE_Junit/src/trigonometric_taylor_series/Trigonometric_Functions_Test.java'
+	                sh './mvnw test -f ASE_Junit/src/trigonometric_taylor_series/Trigonometric_Functions_Test.java'
 	                // bat '.\\mvnw test'
 	            }
 	
