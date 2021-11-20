@@ -4,7 +4,8 @@ pipeline {
 	        stage('git repo & clean') {
 	            steps {
 	                //rmdir  /s /q ASE_Junit
-	                git clone https://github.com/bhargavs09/ASE_Junit.git
+	                //git clone https://github.com/bhargavs09/ASE_Junit.git
+			git clone ' https://github.com/bhargavs09/ASE_Junit.git'
 	               // mvn clean -f ASE_Junit
 	            }
 	        }
