@@ -1,28 +1,27 @@
 pipeline {
 	    agent any
-	    tools { 
-      		maven 'MAVEN_HOME' 
-      		jdk 'JAVA_HOME' 
-    		}
+	
+
 	    stages {
-	        stage('git repo & clean') {
+	        stage('Build') {
 	            steps {
-	                //rmdir  /s /q ASE_Junit
-	                //git clone https://github.com/bhargavs09/ASE_Junit.git
-			git 'https://github.com/bhargavs09/ASE_Junit.git'
-	               // mvn clean -f ASE_Junit
+	                git ' https://github.com/bhargavs09/ASE_Junit.git'
+	                sh './mvnw clean compile'
+	                // bat '.\\mvnw clean compile'
 	            }
 	        }
-	        stage('install') {
+	        stage('Test') {
 	            steps {
-	                sh "mvn install -f ASE_Junit"
+	                sh './mvnw test'
+	                // bat '.\\mvnw test'
+	            }
+	
+
+	            post {
+	                always {
+	                    junit '**/target/surefire-reports/TEST-*.xml'
+	                }
 	            }
 	        }
-	        stage('test') {
-	            steps {
-	                sh "mvn test -f ASE_Junit/src/trigonometric_taylor_series/Trigonometric_Functions_Test.java"
-	            }
-	        }
-	        
 	    }
-}
+	}
