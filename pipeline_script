@@ -12,13 +12,13 @@ pipeline {
 	        stage('Build') {
 	            steps {
 	               // git ' https://github.com/bhargavs09/ASE_Junit.git'
-	                sh './mvnw clean compile'
+	                sh 'mvn clean compile'
 	                // bat '.\\mvnw clean compile'
 	            }
 	        }
 	        stage('Test') {
 	            steps {
-	                sh './mvnw test ASE_Junit/src/trigonometric_taylor_series/Trigonometric_Functions_Test.java'
+	                sh 'mvn test ASE_Junit/src/trigonometric_taylor_series/Trigonometric_Functions_Test.java'
 	                // bat '.\\mvnw test'
 	            }
 	
